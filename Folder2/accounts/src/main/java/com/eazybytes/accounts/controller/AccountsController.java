@@ -30,4 +30,10 @@ public class AccountsController {
                 .body(new ResponseDto(AccountsContants.STATUS_201, AccountsContants.MESSAGE_201));
     }
 
+    @GetMapping("/fetch")
+    public ResponseEntity<CustomerDto> fetechAccountDetails(@RequestParam String mobileNumber){
+        CustomerDto customerDto = iAccountsService.fetchAccount(mobileNumber);
+        return ResponseEntity.status(HttpStatus.OK).body(customerDto);
+    }
+
 }
