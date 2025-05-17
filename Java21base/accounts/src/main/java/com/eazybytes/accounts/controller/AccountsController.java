@@ -14,7 +14,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +45,9 @@ public class AccountsController {
 
     @Value("${build.version}")
     private String buildVersion;
+
+    @Autowired
+    private Environment environment;
 
     @Operation(
             summary = "Create Account REST API",
@@ -178,6 +183,13 @@ public class AccountsController {
     @GetMapping("/build-info")
     public ResponseEntity<String> getBuildVersion(){
         return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+
+    @GetMapping("/java-version")
+    public ResponseEntity<String> getJavaVersion(){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(environment.getProperty("JAVA_HOME"));  // Mostrara el valor si esta configurada
+               // .body(environment.getProperty("OS")); // Mostrara Windows NT por default ya que es del sistema
     }
 
 
