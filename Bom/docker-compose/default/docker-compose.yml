@@ -249,7 +249,7 @@ services:
       service: network-deploy-service
 
   configserver:
-    image: "nelork/configserver:s14"
+    image: "nelork/configserver:s20"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -266,7 +266,7 @@ services:
       OTEL_SERVICE_NAME: "configserver"
 
   eurekaserver:
-    image: "nelork/eurekaserver:s14"
+    image: "nelork/eurekaserver:s20"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -287,7 +287,7 @@ services:
       OTEL_SERVICE_NAME: "eurekaserver"
 
   accounts:
-    image: "nelork/accounts:s14"
+    image: "nelork/accounts:s20"
     container_name: accounts-ms
     depends_on:
       configserver:
@@ -309,7 +309,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "nelork/loans:s14"
+    image: "nelork/loans:s20"
     container_name: loans-ms
     depends_on:
       configserver:
@@ -330,7 +330,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "nelork/cards:s14"
+    image: "nelork/cards:s20"
     container_name: cards-ms
     depends_on:
       configserver:
@@ -351,7 +351,7 @@ services:
       service: microservice-eureka-config
 
   message:
-    image: "nelork/message:s14"
+    image: "nelork/message:s20"
     container_name: message-ms
     environment:
       SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: "kafka:9092"
@@ -360,7 +360,7 @@ services:
       service: network-deploy-service
 
   gatewayserver:
-    image: "nelork/gatewayserver:s14"
+    image: "nelork/gatewayserver:s20"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
